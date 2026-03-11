@@ -14,7 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          alert_type: string
+          article_id: string | null
+          company_symbol: string | null
+          created_at: string
+          dismissed: boolean
+          id: string
+          impact_score: number
+        }
+        Insert: {
+          alert_type?: string
+          article_id?: string | null
+          company_symbol?: string | null
+          created_at?: string
+          dismissed?: boolean
+          id?: string
+          impact_score?: number
+        }
+        Update: {
+          alert_type?: string
+          article_id?: string | null
+          company_symbol?: string | null
+          created_at?: string
+          dismissed?: boolean
+          id?: string
+          impact_score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      articles: {
+        Row: {
+          companies: string[]
+          content: string | null
+          created_at: string
+          id: string
+          impact_score: number
+          is_breaking: boolean
+          market_relevance: string
+          published_at: string
+          sectors: string[]
+          sentiment: string
+          sentiment_score: number
+          source: string
+          summary: string
+          tickers: string[]
+          title: string
+          trading_events: string[]
+          url: string | null
+        }
+        Insert: {
+          companies?: string[]
+          content?: string | null
+          created_at?: string
+          id?: string
+          impact_score?: number
+          is_breaking?: boolean
+          market_relevance?: string
+          published_at?: string
+          sectors?: string[]
+          sentiment?: string
+          sentiment_score?: number
+          source: string
+          summary: string
+          tickers?: string[]
+          title: string
+          trading_events?: string[]
+          url?: string | null
+        }
+        Update: {
+          companies?: string[]
+          content?: string | null
+          created_at?: string
+          id?: string
+          impact_score?: number
+          is_breaking?: boolean
+          market_relevance?: string
+          published_at?: string
+          sectors?: string[]
+          sentiment?: string
+          sentiment_score?: number
+          source?: string
+          summary?: string
+          tickers?: string[]
+          title?: string
+          trading_events?: string[]
+          url?: string | null
+        }
+        Relationships: []
+      }
+      companies: {
+        Row: {
+          company_name: string
+          created_at: string
+          exchange: string
+          id: string
+          market_cap: string
+          sector: string
+          symbol: string
+        }
+        Insert: {
+          company_name: string
+          created_at?: string
+          exchange?: string
+          id?: string
+          market_cap?: string
+          sector?: string
+          symbol: string
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          exchange?: string
+          id?: string
+          market_cap?: string
+          sector?: string
+          symbol?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
