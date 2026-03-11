@@ -8,9 +8,10 @@ import TopImpactNews from '@/components/TopImpactNews';
 import NewsCard from '@/components/NewsCard';
 import SearchBar from '@/components/SearchBar';
 import FilterTabs, { FilterValue } from '@/components/FilterTabs';
+import { Loader2 } from 'lucide-react';
 
 const Index = () => {
-  const { articles, latestAlert, showAlert, sentimentOverview, requestNotifications, dismissAlert } = useNewsStream();
+  const { articles, latestAlert, showAlert, sentimentOverview, requestNotifications, dismissAlert, isLoading } = useNewsStream();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<FilterValue>('all');
 
@@ -66,19 +67,27 @@ const Index = () => {
 
             <div className="text-xs text-muted-foreground font-mono">
               {filtered.length} articles {search && `matching "${search}"`} • Only showing impact ≥ 60
+              {isLoading && ' • Loading...'}
             </div>
 
-            <div className="space-y-3">
-              {filtered.map((article, i) => (
-                <NewsCard key={article.id} article={article} isNew={i === 0} />
-              ))}
-              {filtered.length === 0 && (
-                <div className="text-center py-12 text-muted-foreground">
-                  <p className="text-lg font-medium">No articles found</p>
-                  <p className="text-sm mt-1">Try adjusting your search or filters</p>
-                </div>
-              )}
-            </div>
+            {isLoading && articles.length === 0 ? (
+              <div className="flex items-center justify-center py-20">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <span className="ml-3 text-muted-foreground">Loading market news...</span>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {filtered.map((article, i) => (
+                  <NewsCard key={article.id} article={article} isNew={i === 0} />
+                ))}
+                {filtered.length === 0 && (
+                  <div className="text-center py-12 text-muted-foreground">
+                    <p className="text-lg font-medium">No articles found</p>
+                    <p className="text-sm mt-1">Try adjusting your search or filters</p>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
         </div>
       </main>
