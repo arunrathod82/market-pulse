@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { useNewsStream } from '@/hooks/useNewsStream';
-import { Sentiment } from '@/types/news';
 import Header from '@/components/Header';
 import AlertBanner from '@/components/AlertBanner';
 import TickerBar from '@/components/TickerBar';
@@ -8,12 +7,12 @@ import SentimentPanel from '@/components/SentimentPanel';
 import TopImpactNews from '@/components/TopImpactNews';
 import NewsCard from '@/components/NewsCard';
 import SearchBar from '@/components/SearchBar';
-import FilterTabs from '@/components/FilterTabs';
+import FilterTabs, { FilterValue } from '@/components/FilterTabs';
 
 const Index = () => {
   const { articles, latestAlert, showAlert, sentimentOverview, requestNotifications, dismissAlert } = useNewsStream();
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState<'all' | Sentiment | 'breaking'>('all');
+  const [filter, setFilter] = useState<FilterValue>('all');
 
   const filtered = useMemo(() => {
     let result = articles;
@@ -24,6 +23,7 @@ const Index = () => {
         a =>
           a.title.toLowerCase().includes(q) ||
           a.tickers.some(t => t.toLowerCase().includes(q)) ||
+          a.companies.some(c => c.toLowerCase().includes(q)) ||
           a.sectors.some(s => s.toLowerCase().includes(q)) ||
           a.source.toLowerCase().includes(q)
       );
@@ -31,6 +31,8 @@ const Index = () => {
 
     if (filter === 'breaking') {
       result = result.filter(a => a.isBreaking);
+    } else if (filter === 'high-impact') {
+      result = result.filter(a => a.impactScore >= 80);
     } else if (filter !== 'all') {
       result = result.filter(a => a.sentiment === filter);
     }
@@ -63,7 +65,7 @@ const Index = () => {
             <FilterTabs active={filter} onChange={setFilter} />
 
             <div className="text-xs text-muted-foreground font-mono">
-              {filtered.length} articles {search && `matching "${search}"`}
+              {filtered.length} articles {search && `matching "${search}"`} • Only showing impact ≥ 60
             </div>
 
             <div className="space-y-3">

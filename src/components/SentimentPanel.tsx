@@ -1,5 +1,5 @@
 import { SentimentOverview } from '@/types/news';
-import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus, Target, Zap } from 'lucide-react';
 
 interface SentimentPanelProps {
   overview: SentimentOverview;
@@ -34,7 +34,7 @@ const SentimentPanel = ({ overview }: SentimentPanelProps) => {
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Sentiment counts */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-[hsl(var(--bullish)/0.1)] p-3 text-center">
           <TrendingUp className="h-4 w-4 text-bullish mx-auto mb-1" />
@@ -50,6 +50,20 @@ const SentimentPanel = ({ overview }: SentimentPanelProps) => {
           <TrendingDown className="h-4 w-4 text-bearish mx-auto mb-1" />
           <div className="text-lg font-bold font-mono text-bearish">{overview.bearishCount}</div>
           <div className="text-xs text-muted-foreground">Bearish</div>
+        </div>
+      </div>
+
+      {/* Impact metrics */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="rounded-md bg-[hsl(var(--accent)/0.08)] p-3 text-center">
+          <Target className="h-4 w-4 text-accent mx-auto mb-1" />
+          <div className="text-lg font-bold font-mono text-accent">{overview.avgImpactScore}</div>
+          <div className="text-xs text-muted-foreground">Avg Impact</div>
+        </div>
+        <div className="rounded-md bg-[hsl(var(--breaking)/0.1)] p-3 text-center">
+          <Zap className="h-4 w-4 text-breaking mx-auto mb-1" />
+          <div className="text-lg font-bold font-mono text-breaking">{overview.highImpactCount}</div>
+          <div className="text-xs text-muted-foreground">High Impact</div>
         </div>
       </div>
     </div>
