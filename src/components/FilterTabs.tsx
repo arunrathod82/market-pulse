@@ -1,13 +1,16 @@
 import { Sentiment } from '@/types/news';
 
+export type FilterValue = 'all' | Sentiment | 'breaking' | 'high-impact';
+
 interface FilterTabsProps {
-  active: 'all' | Sentiment | 'breaking';
-  onChange: (tab: 'all' | Sentiment | 'breaking') => void;
+  active: FilterValue;
+  onChange: (tab: FilterValue) => void;
 }
 
-const tabs: { value: 'all' | Sentiment | 'breaking'; label: string }[] = [
+const tabs: { value: FilterValue; label: string }[] = [
   { value: 'all', label: 'All News' },
   { value: 'breaking', label: '⚡ Breaking' },
+  { value: 'high-impact', label: '🎯 High Impact' },
   { value: 'bullish', label: '📈 Bullish' },
   { value: 'bearish', label: '📉 Bearish' },
   { value: 'neutral', label: '📊 Neutral' },
