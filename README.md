@@ -1,73 +1,152 @@
-# Welcome to your Lovable project
+MarketPulse – Real-Time Market Intelligence 📈
 
-## Project info
+MarketPulse is a real-time stock market news intelligence platform that analyzes financial news and detects bullish and bearish market signals using AI-driven sentiment analysis.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The platform collects financial news, evaluates its market impact, and alerts traders when important events occur.
 
-## How can I edit this code?
+🚀 Features
 
-There are several ways of editing your application.
+📊 Real-time financial news dashboard
 
-**Use Lovable**
+🤖 AI-based sentiment analysis (Bullish / Bearish / Neutral)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+⚡ Impact score system to detect market-moving news
 
-Changes made via Lovable will be committed automatically to this repo.
+🚨 Automated alerts for high-impact events
 
-**Use your preferred IDE**
+📰 Smart filtering of trading-relevant articles
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+🌙 Dark trading-terminal UI
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🔔 Breaking news detection
 
-Follow these steps:
+📡 Supabase realtime backend
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+🧠 How It Works
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+MarketPulse processes financial news using this pipeline:
 
-# Step 3: Install the necessary dependencies.
-npm i
+News APIs
+   ↓
+AI News Analysis
+   ↓
+Sentiment Classification
+   ↓
+Impact Score Calculation
+   ↓
+Realtime Dashboard + Alerts
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Example output:
 
-**Edit a file directly in GitHub**
+Stock: NVDA
+Sentiment: Bullish
+Impact Score: 84
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+"Nvidia AI demand surges globally"
+🛠 Tech Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+⚡ Vite
 
-## How can I deploy this project?
+⚛️ React
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+🧠 TypeScript
 
-## Can I connect a custom domain to my Lovable project?
+🎨 Tailwind CSS
 
-Yes, you can!
+🧩 shadcn-ui
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+🔥 Supabase (backend & realtime)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+📂 Project Structure
+market-pulse
+│
+├── public
+│   └── favicon.svg
+│
+├── src
+│   ├── components
+│   ├── hooks
+│   ├── integrations
+│   ├── pages
+│   ├── lib
+│   └── types
+│
+├── supabase
+│   └── functions
+│       └── analyze-news
+│
+└── index.html
+⚙️ Local Development
+
+Make sure you have Node.js installed.
+
+1️⃣ Clone the repository
+git clone <YOUR_GIT_URL>
+2️⃣ Enter project directory
+cd market-pulse
+3️⃣ Install dependencies
+npm install
+4️⃣ Start development server
+npm run dev
+
+App will run at:
+
+http://localhost:8080
+🔑 Environment Variables
+
+Create a .env file in the root:
+
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_key
+📡 Backend
+
+Backend services are powered by:
+
+Supabase Database
+
+Supabase Edge Functions
+
+Supabase Realtime
+
+News processing logic is implemented in:
+
+supabase/functions/analyze-news
+📈 Impact Score Logic
+
+MarketPulse filters news based on impact score:
+
+Score	Action
+≥ 60	Show in dashboard
+≥ 70	Trigger alert
+
+This helps traders focus only on important market-moving news.
+
+🌐 Deployment
+
+You can deploy the project using:
+
+Vercel
+
+Netlify
+
+Supabase hosting
+
+Lovable publishing
+
+📷 Preview
+
+Example dashboard view:
+
+Bullish News: 62%
+Bearish News: 28%
+Neutral News: 10%
+
+🧑‍💻 Author
+
+Developed by Arun Rathod
+
+📄 License
+
+This project is licensed under the MIT License.

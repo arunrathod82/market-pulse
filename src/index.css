@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+/* ================= BASE THEME ================= */
 
 @layer base {
   :root {
@@ -36,12 +38,15 @@
 
     --radius: 0.5rem;
 
-    /* Custom trading tokens */
+    /* Trading indicators */
+
     --bullish: 142 70% 45%;
     --bearish: 0 72% 51%;
     --neutral: 215 15% 50%;
     --breaking: 38 92% 50%;
     --ticker: 199 89% 48%;
+
+    /* Gradients */
 
     --gradient-bullish: linear-gradient(135deg, hsl(142 70% 45% / 0.15), hsl(142 70% 45% / 0.05));
     --gradient-bearish: linear-gradient(135deg, hsl(0 72% 51% / 0.15), hsl(0 72% 51% / 0.05));
@@ -49,10 +54,14 @@
     --gradient-card: linear-gradient(180deg, hsl(220 18% 12%), hsl(220 18% 10%));
     --gradient-header: linear-gradient(90deg, hsl(220 20% 7%), hsl(220 18% 10%));
 
+    /* Shadows */
+
     --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.5);
     --shadow-glow-bullish: 0 0 20px hsl(142 70% 45% / 0.15);
     --shadow-glow-bearish: 0 0 20px hsl(0 72% 51% / 0.15);
     --shadow-glow-breaking: 0 0 20px hsl(38 92% 50% / 0.2);
+
+    /* Sidebar */
 
     --sidebar-background: 220 18% 10%;
     --sidebar-foreground: 210 20% 80%;
@@ -63,9 +72,7 @@
     --sidebar-border: 220 16% 18%;
     --sidebar-ring: 142 70% 45%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -75,30 +82,37 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Custom scrollbar */
+  /* Scrollbar */
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: hsl(var(--background));
   }
+
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--border));
     border-radius: 3px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--muted-foreground));
   }
 }
 
+/* ================= UTILITIES ================= */
+
 @layer utilities {
+
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
 
   .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 3s cubic-bezier(0.4,0,0.6,1) infinite;
   }
 
   .animate-slide-in {
@@ -107,6 +121,10 @@
 
   .animate-flash {
     animation: flash 0.6s ease-out;
+  }
+
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
   }
 
   .line-clamp-2 {
@@ -122,29 +140,39 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-}
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+  /* Trading number animations */
+
+  .number-change-up {
+    color: hsl(var(--bullish));
+    animation: flash 0.5s ease;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .number-change-down {
+    color: hsl(var(--bearish));
+    animation: flash 0.5s ease;
   }
-}
 
-@keyframes flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
+  /* Keyframes */
 
-@keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-.animate-ticker {
-  animation: ticker 30s linear infinite;
+  @keyframes flash {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
