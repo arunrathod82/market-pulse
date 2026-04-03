@@ -91,9 +91,6 @@ npm install
 4️⃣ Start development server
 npm run dev
 
-App will run at:
-
-http://localhost:8080
 🔑 Environment Variables
 
 Create a .env file in the root:
